@@ -19,8 +19,9 @@ export default function Page() {
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || '서버 오류');
       setText(data.text ?? '(응답 없음)');
-    } catch (e: any) {
-      setText('요청 실패: ' + (e?.message ?? e));
+    } catch (e: unknown) {
+      const message = e instanceof Error ? e.message : typeof e === 'string' ? e : '알 수 없는 오류';
+      setText('요청 실패: ' + message);
     } finally {
       setLoading(false);
     }
