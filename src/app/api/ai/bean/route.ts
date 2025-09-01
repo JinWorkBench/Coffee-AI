@@ -40,6 +40,7 @@ export async function POST(req: Request) {
           "언급을 생략하는 과정에서 포함되어 있지 않다는 식의 표현 금지"
         ].join("\n"),
       },
+      { role: "user", content: user },
       { 
         role: "user",
         content: JSON.stringify({ facts })
