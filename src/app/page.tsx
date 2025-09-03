@@ -1,4 +1,4 @@
-import BeanExplainer from "./components/BeanExplainer";
+import BeanExplainer from "@/components/BeanExplainer";
 
 export default function Page() {
   return (
