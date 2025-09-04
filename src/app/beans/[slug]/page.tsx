@@ -32,7 +32,7 @@ export default function BeanDetailPage({ params }: Params) {
 
       <div className="grid gap-8 md:grid-cols-2">
         <div className="overflow-hidden rounded-2xl border bg-white">
-          <div className="relative aspect-[4/3] bg-neutral-100">
+          <div className="relative h-full min-h-[320px] md:min-h-[520px]">
             <Image
               src={bean.image}
               alt={bean.name}
