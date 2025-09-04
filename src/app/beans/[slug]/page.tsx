@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BeanSummary from "@/components/BeanSummary";
 
 const MOCK_BEANS = {
   "1": {
@@ -14,7 +15,7 @@ const MOCK_BEANS = {
     price: 17000,
     weight: "100g, 200g",
     image: "/coffee/beans.jpg",
-    cupnote: "자스민, 아카시아, 자몽, 화이트와인",
+    cupnote: "적포도, 멜론, 카카오닙스, 레드와인",
     desc: "적포도 같은 산미와 멜론의 시원한 느낌의 단맛, 질감과 밸런스가 좋은 커피입니다.",
   },
 } as const;
@@ -52,6 +53,12 @@ export default function BeanDetailPage({ params }: Params) {
             </h2>
             <p className="leading-relaxed text-neutral-800">{bean.cupnote}</p>
           </div>
+
+          <BeanSummary
+            beanName={bean.name}
+            cupnote={bean.cupnote}
+            fallbackDesc={bean.desc}
+          />
 
           <div className="flex gap-3 pt-2">
             <button className="rounded-xl bg-black px-4 py-2 text-white">
