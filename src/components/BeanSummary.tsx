@@ -35,15 +35,23 @@ export default function BeanSummary({
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "서버 오류");
       setText(data.text ?? "(응답 없음)");
-    } catch (e: any) {
-      setErr(e?.message || "요청 실패");
+    } catch (e) {
+      const message =
+        e instanceof Error
+          ? e.message
+          : typeof e === "string"
+          ? e
+          : "알 수 없는 오류";
+      setErr(message);
       setText(fallbackDesc || "");
     } finally {
       setLoading(false);
     }
   }, [beanName, cupnote, fallbackDesc]);
 
-  useEffect(() => { run(); }, [run]);
+  useEffect(() => {
+    run();
+  }, [run]);
 
   return (
     <div className="rounded-2xl border bg-white p-4 space-y-2">
