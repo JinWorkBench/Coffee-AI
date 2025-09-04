@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 type Props = {
   beanName: string; // 원두 명
@@ -17,7 +17,7 @@ export default function BeanSummary({
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
-  async function run() {
+  const run = useCallback(async () => {
     setLoading(true);
     setErr(null);
     setText("");
@@ -41,7 +41,9 @@ export default function BeanSummary({
     } finally {
       setLoading(false);
     }
-  }
+  }, [beanName, cupnote, fallbackDesc]);
+
+  useEffect(() => { run(); }, [run]);
 
   return (
     <div className="rounded-2xl border bg-white p-4 space-y-2">
