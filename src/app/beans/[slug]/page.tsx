@@ -20,10 +20,17 @@ const MOCK_BEANS = {
   },
 } as const;
 
-type Params = { params: { slug: keyof typeof MOCK_BEANS } };
+type RouteParams = Promise<{ slug: string }>;
 
-export default function BeanDetailPage({ params }: Params) {
-  const bean = MOCK_BEANS[params.slug];
+export default async function BeanDetailPage({
+  params,
+}: {
+  params: RouteParams;
+}) {
+  const { slug } = await params;
+  const bean = (
+    MOCK_BEANS as Record<string, (typeof MOCK_BEANS)[keyof typeof MOCK_BEANS]>
+  )[slug];
   if (!bean) return <div className="p-6">상품을 찾을 수 없습니다.</div>;
 
   return (
