@@ -14,7 +14,7 @@ const MOCK_BEANS = {
     name: "인도네시아 가요 쁘가싱 CM 내추럴",
     price: 17000,
     weight: "100g, 200g",
-    image: "/coffee/beans.jpg",
+    image: "/coffee/beans2.jpg",
     cupnote: "적포도, 멜론, 카카오닙스, 레드와인",
     desc: "적포도 같은 산미와 멜론의 시원한 느낌의 단맛, 질감과 밸런스가 좋은 커피입니다.",
   },
