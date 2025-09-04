@@ -1,27 +1,32 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Page() {
-  const [prompt, setPrompt] = useState('');
-  const [text, setText] = useState('');
+  const [prompt, setPrompt] = useState("");
+  const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function run() {
     setLoading(true);
-    setText('');
+    setText("");
     try {
-      const res = await fetch('/api/ai/bean', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/ai/bean", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data?.error || '서버 오류');
-      setText(data.text ?? '(응답 없음)');
+      if (!res.ok) throw new Error(data?.error || "서버 오류");
+      setText(data.text ?? "(응답 없음)");
     } catch (e: unknown) {
-      const message = e instanceof Error ? e.message : typeof e === 'string' ? e : '알 수 없는 오류';
-      setText('요청 실패: ' + message);
+      const message =
+        e instanceof Error
+          ? e.message
+          : typeof e === "string"
+          ? e
+          : "알 수 없는 오류";
+      setText("요청 실패: " + message);
     } finally {
       setLoading(false);
     }
@@ -29,11 +34,22 @@ export default function Page() {
 
   return (
     <main className="p-6 mt-5 max-w-xl mx-auto border rounded">
-      <textarea value={prompt} onChange={(e)=>setPrompt(e.target.value)} className="w-full h-28 border rounded p-3" placeholder="프롬프트 입력" />
-      <button onClick={run} disabled={loading} className="mt-3 px-3 py-2 border rounded">
-        {loading ? '생성 중…' : '생성하기'}
+      <textarea
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        className="w-full h-28 border rounded p-3"
+        placeholder="프롬프트 입력"
+      />
+      <button
+        onClick={run}
+        disabled={loading}
+        className="mt-3 px-3 py-2 border rounded"
+      >
+        {loading ? "생성 중…" : "생성하기"}
       </button>
-      <pre className="mt-3 whitespace-pre-wrap border rounded p-3 min-h-[60px]">{text}</pre>
+      <pre className="mt-3 whitespace-pre-wrap border rounded p-3 min-h-[60px]">
+        {text}
+      </pre>
     </main>
   );
 }
