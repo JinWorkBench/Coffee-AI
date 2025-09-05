@@ -1,4 +1,4 @@
-# ☕ AI Coffee Beans Summary Demo
+# ☕ AI 커피 원두 요약 설명
 
 **AI + E-commerce 실험 프로젝트**  
 
@@ -77,10 +77,13 @@ LLM 에 관심이 생겨 공부를 시작하면서 학습용으로 만들었습�
 | --- | --- |
 | ![상품 상세1](./docs/img2.png) | ![상품 상세2](./docs/img1.png) |
 
-| 에러 시 처리 | 원두 AI 설명기 |
-| --- | --- |
-| <img width="1006" height="591" alt="image" src="https://github.com/user-attachments/assets/b98f9036-c27f-47a2-85fa-cb601314dfd9" /> |
- <img width="615" height="397" alt="image" src="https://github.com/user-attachments/assets/2913b2c0-c141-4ec3-b392-2d69f7ec93c9" />|
+| 실패 시 fallback 기본 설명 |
+| --- |
+|<img width="1006" height="591" alt="image" src="https://github.com/user-attachments/assets/b98f9036-c27f-47a2-85fa-cb601314dfd9" />|
+
+| AI 원두 설명기 (초기 버전) |
+| --- |
+|<img width="615" height="397" alt="image" src="https://github.com/user-attachments/assets/2913b2c0-c141-4ec3-b392-2d69f7ec93c9" />|
 
 | 상세 페이지 접속 시 AI 요약 자동 실행 |
 | --- |
