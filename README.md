@@ -17,6 +17,7 @@
   - LLM(OpenAI API)을 전자상거래 맥락에 적용해  
     소비자 친화적인 상품 설명을 자동 생성하는 기능을 실험  
   - 단순 데모가 아니라 **실제 서비스 플로우**와 유사한 구조 구현
+  - Nest.js API 서버를 통해 **상품 목록/상세 데이터를 제공** → Next.js 프론트엔드와 연동
  
 - **진행 과정**  
   1. 원두명을 입력하는 간단한 AI 요약기 제작  
@@ -29,7 +30,8 @@
 ## ✨ 주요 기능
 
 - **상품 상세 페이지**
-  - 목업 데이터(`MOCK_BEANS`) 기반 원두 정보 표시
+  - Nest.js API(`GET /products`, `GET /products/:id`)로 원두 정보 제공
+  - Next.js에서 API 호출하여 데이터 렌더링
   - 반응형 Grid 레이아웃 적용
 
 - **AI 요약 생성 기능**
@@ -64,9 +66,14 @@
 
 - **프론트엔드 역량 강화**  
   - `useEffect` + `useCallback`으로 자동 실행 구현
-  - 타입 충돌(`params` → Promise) 해결 경험  
+  - Next.js 15에서 `params` 비동기화 경고 해결(`await params` 적용)  
   - Tailwind Grid 레이아웃으로 반응형 구현
     
+- **백엔드 연동 학습**
+  - Nest.js로 in-memory 상품 API 제작
+  - Next.js 프론트엔드에서 API 호출 및 데이터 표시
+  - CORS 설정, 환경 변수(`NEXT_PUBLIC_API_BASE`) 관리 경험    
+
 ---
 
 ## ✨ 스크린샷 / GIF
