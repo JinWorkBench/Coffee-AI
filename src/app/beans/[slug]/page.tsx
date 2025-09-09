@@ -1,37 +1,28 @@
 import Image from "next/image";
 import BeanSummary from "@/components/BeanSummary";
 
-const MOCK_BEANS = {
-  "1": {
-    name: "콜롬비아 알토 씨엘로 게이샤 워시드",
-    price: 18000,
-    weight: "100g, 200g",
-    image: "/coffee/beans.jpg",
-    cupnote: "자스민, 아카시아, 자몽, 화이트와인",
-    desc: "게이샤의 맛과 향이 오롯이 느껴질 수 있도록 섬세하게 가공하여 꽃향들이 정갈하게 담겨있습니다.",
-  },
-  "2": {
-    name: "인도네시아 가요 쁘가싱 CM 내추럴",
-    price: 17000,
-    weight: "100g, 200g",
-    image: "/coffee/beans2.jpg",
-    cupnote: "적포도, 멜론, 카카오닙스, 레드와인",
-    desc: "적포도 같은 산미와 멜론의 시원한 느낌의 단맛, 질감과 밸런스가 좋은 커피입니다.",
-  },
-} as const;
-
-type RouteParams = Promise<{ slug: string }>;
+type Bean = {
+  id: string;
+  type: "bean" | "goods";
+  name: string;
+  price: number;
+  weight?: string;
+  image: string;
+  cupnote?: string;
+  desc?: string;
+};
 
 export default async function BeanDetailPage({
   params,
 }: {
-  params: RouteParams;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
-  const bean = (
-    MOCK_BEANS as Record<string, (typeof MOCK_BEANS)[keyof typeof MOCK_BEANS]>
-  )[slug];
-  if (!bean) return <div className="p-6">상품을 찾을 수 없습니다.</div>;
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE!;
+  const res = await fetch(`${apiBase}/products/${params.slug}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) return <div className="p-6">상품을 찾을 수 없습니다.</div>;
+  const bean: Bean = await res.json();
 
   return (
     <main className="mx-auto max-w-5xl px-5 py-10">
