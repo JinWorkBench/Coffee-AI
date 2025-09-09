@@ -12,13 +12,17 @@ type Bean = {
   desc?: string;
 };
 
+type MaybePromise<T> = T | Promise<T>;
+
 export default async function BeanDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: MaybePromise<{ slug: string }>;
 }) {
+  const { slug } = await params;
+
   const apiBase = process.env.NEXT_PUBLIC_API_BASE!;
-  const res = await fetch(`${apiBase}/products/${params.slug}`, {
+  const res = await fetch(`${apiBase}/products/${slug}`, {
     cache: "no-store",
   });
   if (!res.ok) return <div className="p-6">상품을 찾을 수 없습니다.</div>;
